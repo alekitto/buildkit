@@ -372,7 +372,9 @@ FROM binaries AS buildkit-darwin
 FROM binaries AS buildkit-freebsd
 ENTRYPOINT ["/buildkitd"]
 
-FROM binaries AS buildkit-windows
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2019 AS buildkit-windows
+COPY --link --from=binaries / /
+ENTRYPOINT ["/buildkitd.exe"]
 
 FROM scratch AS binaries-for-test
 COPY --link --from=gotestsum /out /
