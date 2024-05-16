@@ -450,3 +450,5 @@ ENTRYPOINT ["rootlesskit", "buildkitd"]
 
 # buildkit builds the buildkit container image
 FROM buildkit-$TARGETOS${BUILDKIT_DEBUG:+-debug} AS buildkit
+
+ENV BUILDKIT_STEP_LOG_MAX_SIZE=100000000 BUILDKIT_STEP_LOG_MAX_SPEED=100000000
